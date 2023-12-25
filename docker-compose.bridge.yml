@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  bridge:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - KAFKA_BROKER=kafka:9093
+      - RABBITMQ1_HOST=rabbitmq1
+      - RABBITMQ2_HOST=rabbitmq2
+
+networks:
+  default:
+    external:
+      name: rabbitmq1-network
+  rabbitmq2-network:
+    external:
+      name: rabbitmq2-network
+  kafka-network:
+    external:
+      name: kafka-network

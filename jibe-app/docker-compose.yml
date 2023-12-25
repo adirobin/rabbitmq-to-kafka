@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+  rabbitmq1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - RABBITMQ_ERLANG_COOKIE=f74b11254454825e841847cbb9b20395c5d3be55fa8cda1545d8a63afdc6d362
+      - RABBITMQ_DEFAULT_VHOST=/vhost1
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - jibe-app-network
+
+  back-end-app:
+    build:
+      context: back-end/
+      dockerfile: Dockerfile
+    environment:
+      - RABBITMQ_HOST=rabbitmq1
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_DEFAULT_VHOST=/vhost1
+    networks:
+      - jibe-app-network
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: jibe
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: mypsdb
+    ports:
+      - "5432:5432"
+    networks:
+        - jibe-app-network
+
+  front-end:
+    build:
+      context: front-end/
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    networks:
+      - jibe-app-network
+
+networks:
+  jibe-app-network:
+    driver: bridge
+    external: true

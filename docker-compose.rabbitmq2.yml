@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  rabbitmq2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - RABBITMQ_ERLANG_COOKIE=f74b11254454825e841847cbb9b20395c5d3be55fa8cda1545d8a63afdc6d362
+      - RABBITMQ_DEFAULT_VHOST=/vhost2
+    ports:
+      - "5673:5672"
+      - "15673:15672"
+
+networks:
+  rabbitmq2-network:
+    driver: bridge
