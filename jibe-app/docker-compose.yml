@@ -19,9 +19,12 @@ services:
       context: back-end/
       dockerfile: Dockerfile
     environment:
-      - RABBITMQ_HOST=rabbitmq1
-      - RABBITMQ_PORT=5672
-      - RABBITMQ_DEFAULT_VHOST=/vhost1
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq1:5672//vhost1
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=jibe
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=mypsdb
     networks:
       - jibe-app-network
 
@@ -40,6 +43,8 @@ services:
     build:
       context: front-end/
       dockerfile: Dockerfile
+    environment:
+      - ROOT_API_URL = http://back-end-app:3001/api
     ports:
       - "3000:80"
     networks:
