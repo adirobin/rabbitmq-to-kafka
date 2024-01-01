@@ -8,7 +8,7 @@ import * as bodyParser from "body-parser"
 import {Vessel} from "./entity/vessel";
 
 const app = express();
-const port = 3001;
+const port = process.env.APP_PORT || 3001;
 
 app.use(cors());
 app.use(express.json());

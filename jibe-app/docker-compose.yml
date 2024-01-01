@@ -19,6 +19,7 @@ services:
       context: back-end/
       dockerfile: Dockerfile
     environment:
+      - APP_PORT=3001
       - RABBITMQ_URL=amqp://guest:guest@rabbitmq1:5672//vhost1
       - POSTGRES_HOST=postgres
       - POSTGRES_PORT=5432
