@@ -6,6 +6,7 @@ import { sendMessageToQueue, consumeQueue, setupRabbitMQ} from './rabbitmq';
 import { addVessel, getVessels } from "./app-data-source"
 import * as bodyParser from "body-parser"
 import {Vessel} from "./entity/vessel";
+import './copyMessagesBetweenQueues';
 
 const app = express();
 const port = process.env.APP_PORT || 3001;

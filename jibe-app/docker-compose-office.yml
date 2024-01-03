@@ -9,8 +9,8 @@ services:
       - RABBITMQ_ERLANG_COOKIE=f74b11254454825e841847cbb9b20395c5d3be55fa8cda1545d8a63afdc6d362
       - RABBITMQ_DEFAULT_VHOST=/vhost1
     ports:
-      - "5672:5672"
-      - "15672:15672"
+      - "5673:5672"
+      - "15673:15672"
     networks:
       - jibe-app-network
 
@@ -19,15 +19,15 @@ services:
       context: back-end/
       dockerfile: Dockerfile
     environment:
-      - APP_PORT=3001
-      - RABBITMQ_URL=amqp://guest:guest@rabbitmq1:5672//vhost1
+      - APP_PORT=4001
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq1:5673//vhost1
       - POSTGRES_HOST=postgres
-      - POSTGRES_PORT=5432
+      - POSTGRES_PORT=5433
       - POSTGRES_USER=jibe
       - POSTGRES_PASSWORD=admin
       - POSTGRES_DB=mypsdb
     ports:
-      - "3001:3001"
+      - "4001:3001"
     networks:
       - jibe-app-network
 
@@ -38,7 +38,7 @@ services:
       POSTGRES_PASSWORD: admin
       POSTGRES_DB: mypsdb
     ports:
-      - "5432:5432"
+      - "5433:5432"
     networks:
         - jibe-app-network
 
@@ -48,9 +48,9 @@ services:
       dockerfile: Dockerfile
     environment:
       - PORT=80
-      - ROOT_API_URL=http://back-end-app:3001/api
+      - ROOT_API_URL=http://back-end-app:4001/api
     ports:
-      - "3000:80"
+      - "4000:80"
     networks:
       - jibe-app-network
 
