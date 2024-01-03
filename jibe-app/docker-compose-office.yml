@@ -44,7 +44,7 @@ services:
 
   front-end:
     build:
-      context: front-end/
+      context: frontend/
       dockerfile: Dockerfile
     environment:
       - PORT=80
