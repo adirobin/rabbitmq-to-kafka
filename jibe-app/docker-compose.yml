@@ -16,7 +16,7 @@ services:
 
   back-end-app:
     build:
-      context: back-end/
+      context: backend/
       dockerfile: Dockerfile
     environment:
       - APP_PORT=3001
@@ -48,7 +48,7 @@ services:
       dockerfile: Dockerfile
     environment:
       - PORT=80
-      - ROOT_API_URL=http://back-end-app:3001/api
+      - ROOT_API_URL=http://backend-app:3001/api
     ports:
       - "3000:80"
     networks:
