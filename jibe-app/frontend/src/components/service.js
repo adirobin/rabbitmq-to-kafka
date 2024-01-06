@@ -1,10 +1,8 @@
 import axios from 'axios';
 
 export const config = {
-    rootURL : process.env.ROOT_API_URL || 'http://localhost:3001/api',
+    rootURL : process.env.REACT_APP_API_URL || 'http://localhost:3001/api',
 }
-
-
 
 export const getVesselData = async () => {
     try {

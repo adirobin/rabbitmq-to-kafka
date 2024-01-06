@@ -23,7 +23,6 @@ const VesselList = () => {
     return (
         <div>
             <h2>Vessel List</h2>
-            <h3>----{process.env.ROOT_API_URL}----</h3>
             <button onClick={handleRefresh}>Refresh</button>
             <table>
                 <thead>
