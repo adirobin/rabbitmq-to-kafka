@@ -1,5 +1,6 @@
 FROM rabbitmq:management
 
+RUN rabbitmq-plugins enable rabbitmq_shovel_management
 RUN rabbitmq-plugins enable --offline rabbitmq_management_agent
 RUN rabbitmq-plugins enable --offline rabbitmq_management
 
