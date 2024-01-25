@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  rabbitmq1:
+  rabbitmq2:
     build:
       context: .
       dockerfile: Dockerfile
@@ -20,14 +20,14 @@ services:
       dockerfile: Dockerfile
     environment:
       - APP_PORT=4001
-      - RABBITMQ_URL=amqp://guest:guest@rabbitmq1:5673//vhost1
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq2:5673//vhost1
       - POSTGRES_HOST=postgres
       - POSTGRES_PORT=5433
       - POSTGRES_USER=jibe
       - POSTGRES_PASSWORD=admin
       - POSTGRES_DB=mypsdb
     ports:
-      - "4001:3001"
+        - "4001:3001"
     networks:
       - jibe-app-network
 
@@ -48,7 +48,7 @@ services:
       dockerfile: Dockerfile
     environment:
       - PORT=80
-      - ROOT_API_URL=http://backend-app:4001/api
+      - REACT_APP_API_URL=http://localhost:4001
     ports:
       - "4000:80"
     networks:
