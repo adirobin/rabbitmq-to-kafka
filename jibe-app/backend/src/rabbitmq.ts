@@ -7,6 +7,7 @@ const createConnection = async (): Promise<Connection> => {
     const connectionStr = process.env.RABBITMQ_URL || 'amqp://guest:guest@localhost:5672//vhost1';
     console.log('Connecting to RabbitMQ at:', connectionStr);
     const connection = await connect(connectionStr);
+    console.log('Connected to RabbitMQ');
     return connection;
 }
 

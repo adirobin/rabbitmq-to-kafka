@@ -48,7 +48,7 @@ services:
       dockerfile: Dockerfile
     environment:
       - PORT=80
-      - REACT_APP_API_URL=http://backend-app:3001/api
+      - REACT_APP_API_URL=http://localhost:3001
     ports:
       - "3000:80"
     networks:

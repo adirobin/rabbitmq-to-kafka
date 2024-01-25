@@ -1,12 +1,11 @@
+
 import axios from 'axios';
 
-export const config = {
-    rootURL : process.env.REACT_APP_API_URL || 'http://localhost:3001/api',
-}
+const backendUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001';
 
 export const getVesselData = async () => {
     try {
-        const apiURL = `${config.rootURL}/vessels`;
+        const apiURL = `${backendUrl}/api/vessels`;
         console.log(apiURL);
         const response = await axios.get(apiURL);
         return response.data;
@@ -16,7 +15,7 @@ export const getVesselData = async () => {
 };
 
 export const addVesselData = async (vesselData) => {
-    const apiURL = `${config.rootURL}/add-message-to-queue`;
+    const apiURL = `${backendUrl}/api/add-message-to-queue`;
     const response = await axios.post(apiURL, vesselData);
     console.log(response.data); // Log the server response
 };

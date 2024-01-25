@@ -6,16 +6,20 @@ const VesselList = () => {
     const [vessels, setVessels] = useState([]);
 
     useEffect(() => {
-        getVesselData().then((response) => {
-            console.log(response);
-            setVessels(response);
-        });
+        const fetchData = async () => {
+            const result = await getVesselData();
+            setVessels(result);
+        }
+        fetchData();
+
     }, []); // Empty dependency array ensures that the effect runs only once on component mount
 
     const handleRefresh = () => {
         getVesselData().then((response) => {
             console.log(response);
             setVessels(response);
+        }).catch((error) => {
+            console.log(error);
         });
 
     };
